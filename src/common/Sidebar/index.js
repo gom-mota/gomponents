@@ -1,4 +1,4 @@
-import { ROUTES } from '../../utils'
+import { ROUTES } from '../../utils.js'
 import components from '../../components/index.js'
 
 const Sidebar = () => {
