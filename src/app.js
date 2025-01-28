@@ -15,7 +15,7 @@ const handleGithubPages404File = () => {
 const renderPageContent = async (name, params) => {
 	const content = document.getElementById('content')
 
-	const { default: Page } = await import(`/src/pages/${name}/index.js`)
+	const { default: Page } = await import(`./src/pages/${name}/index.js`)
 
 	const { render, after_render, title, description } = await Page(params)
 
