@@ -12,12 +12,10 @@ const handleGithubPages404File = () => {
 	}
 }
 
-const renderPageContent = async (route, params) => {
+const renderPageContent = async (name, params) => {
 	const content = document.getElementById('content')
 
-	const { default: Page } = await import(
-		`/src/pages/${ROUTES[route].name}/index.js`
-	)
+	const { default: Page } = await import(`/src/pages/${name}/index.js`)
 
 	const { render, after_render, title, description } = await Page(params)
 
@@ -64,7 +62,9 @@ const handleRouteChange = () => {
 	if (currentRoute) {
 		const params = getRouteParams(pathname, currentRoute)
 
-		renderPageContent(currentRoute, params)
+		renderPageContent(ROUTES[currentRoute].name, params)
+	} else {
+		renderPageContent('NotFound')
 	}
 }
 
