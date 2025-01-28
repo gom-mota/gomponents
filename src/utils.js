@@ -1,4 +1,4 @@
 export const ROUTES = {
-	'/gomponents': { name: 'Introduction', label: 'Introdução', nav: true },
-	'/gomponents/component/:name': { name: 'Component', label: 'Componente' },
+	'/': { name: 'Introduction', label: 'Introdução', nav: true },
+	'/component/:name': { name: 'Component', label: 'Componente' },
 }
