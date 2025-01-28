@@ -1,0 +1,22 @@
+.alert {
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.alert.info {
+    background-color: #d9edf7;
+    color: #31708f;
+}
+
+.alert.warning {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+}
+
+.alert.error {
+    background-color: #f2dede;
+    color: #a94442;
+}

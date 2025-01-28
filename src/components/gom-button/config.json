@@ -1,0 +1,20 @@
+{
+    "properties": {
+        "label": {
+            "description": "Texto que fica dentro do botão.",
+            "type": "text",
+            "default": "Botão"
+        },
+        "disabled": {
+            "description": "Estado habilitado/desabilitado.",
+            "type": "check",
+            "default": false
+        },
+        "variant": {
+            "description": "Cor botão",
+            "type": "radio",
+            "options": ["primary", "secondary"],
+            "default": "primary"
+        }
+    }
+}
