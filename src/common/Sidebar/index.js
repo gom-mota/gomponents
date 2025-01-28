@@ -33,7 +33,7 @@ const Sidebar = () => {
                                 </li>
                             `
 						)
-						.join('')}                      
+						.join('')}
                     </ul>
                 </ul>
             </nav>

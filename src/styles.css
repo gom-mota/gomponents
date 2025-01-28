@@ -4,8 +4,27 @@
 @import url('./styles/variables.css');
 
 body {
-	background-color: #0d1318;
+	background-color: var(--color-background-main);
 	color: white;
 	font-family: var(--font-family);
 	font-style: normal;
+}
+
+.container {
+	display: flex;
+}
+
+#sidebar {
+	border-right: 1px solid #252a2d;
+	background-color: #181b20;
+	width: 320px;
+	height: 100vh;
+	box-sizing: border-box;
+	overflow-y: auto;
+}
+
+#content {
+	width: 960px;
+	margin: 0 auto;
+	padding: 1rem;
 }
