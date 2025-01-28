@@ -1,5 +1,5 @@
 import { ROUTES } from '/src/utils.js'
-import components from '/src/components/index.js'
+import components from '../../components/index.js'
 
 const Sidebar = () => {
 	const sidebarElement = document.getElementById('sidebar')
