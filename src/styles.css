@@ -14,15 +14,6 @@ body {
 	display: flex;
 }
 
-#sidebar {
-	border-right: 1px solid #252a2d;
-	background-color: #181b20;
-	width: 320px;
-	height: 100vh;
-	box-sizing: border-box;
-	overflow-y: auto;
-}
-
 #content {
 	width: 960px;
 	margin: 0 auto;

@@ -5,26 +5,41 @@ const Sidebar = () => {
 	const sidebarElement = document.getElementById('sidebar')
 
 	sidebarElement.innerHTML = /*html*/ `
-            <nav>
+        <style>
+            @import url('/src/common/Sidebar/styles.css');
+        </style>
+
+        <header>
+            <h1>GOMponents</h1>
+            
+            <button>
+                <ion-icon name="logo-github"></ion-icon>
+            </button>
+        </header>
+        
+        <nav>
+            <ul>
+                <li>Getting Started</li>
+
                 <ul>
-                    <li>Getting Started</li>
-    
-                    <ul>
-                        ${Object.entries(ROUTES)
-							.filter(([_, { nav }]) => nav === true)
-							.map(
-								([route, { name, label }]) => /*html*/ `
-                                    <li id="nav-${name}" onclick="navigateToRoute('${route}')">
+                    ${Object.entries(ROUTES)
+						.filter(([_, { nav }]) => nav === true)
+						.map(
+							([route, { name, label }], index) => /*html*/ `
+                                <li 
+                                    id="nav-${name}"
+                                    onclick="navigateToRoute('${route}')"
+                                    class="${index === 0 ? 'active' : ''}" >
                                         ${label}
-                                    </li>
-                                `
-							)
-							.join('')}
-                    </ul>
-    
-                    <li>Components</li>
-    
-                    <ul>
+                                </li>
+                            `
+						)
+						.join('')}
+                </ul>
+
+                <li>Components</li>
+
+                <ul>
                     ${Object.keys(components)
 						.map(
 							(name) => /*html*/ `
@@ -33,11 +48,20 @@ const Sidebar = () => {
                                 </li>
                             `
 						)
-						.join('')}
-                    </ul>
+						.join('')}                    
                 </ul>
-            </nav>
-        `
+            </ul>
+        </nav>
+    `
+
+	const navItems = document.querySelectorAll('#sidebar li')
+
+	navItems.forEach((item) => {
+		item.addEventListener('click', () => {
+			navItems.forEach((i) => i.classList.remove('active'))
+			item.classList.add('active')
+		})
+	})
 }
 
 export default Sidebar
