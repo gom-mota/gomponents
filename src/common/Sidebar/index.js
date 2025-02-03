@@ -29,11 +29,10 @@ const Sidebar = () => {
                     ${Object.entries(ROUTES)
 						.filter(([_, { nav }]) => nav === true)
 						.map(
-							([route, { name, label }], index) => /*html*/ `
+							([route, { name, label }]) => /*html*/ `
                                 <li 
-                                    id="nav-${name}"
-                                    onclick="navigateToRoute('${route}')"
-                                    class="${index === 0 ? 'active' : ''}" >
+                                    id="nav-${name.toLowerCase()}"
+                                    onclick="navigateToRoute('${route}')">
                                         ${label}
                                 </li>
                             `
@@ -69,6 +68,21 @@ const Sidebar = () => {
 			item.classList.add('active')
 		})
 	})
+
+	window.onload = () => {
+		const lastPathnamePart = window.location.pathname.split('/').pop()
+
+		if (lastPathnamePart) {
+			const navItemElement = Array.from(navItems).find(
+				(item) => item.id === `nav-${lastPathnamePart}`
+			)
+
+			if (navItemElement) navItemElement.classList.add('active')
+		} else
+			document
+				.getElementById(`nav-${ROUTES['/'].name.toLowerCase()}`)
+				.classList.add('active')
+	}
 }
 
 export default Sidebar
