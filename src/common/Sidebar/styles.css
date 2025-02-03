@@ -44,7 +44,7 @@
 				margin: 0 0.7rem;
 				font-weight: 400;
 				font-size: 16px;
-
+				text-transform: capitalize;
 				border-radius: 7px;
 
 				&:not(:last-child) {
@@ -97,6 +97,7 @@
 	h1 {
 		font-size: 19px;
 		font-weight: bold;
+		letter-spacing: 1px;
 	}
 
 	ion-icon {
@@ -117,5 +118,11 @@
 		&:hover {
 			background-color: #1a222a;
 		}
+	}
+
+	span {
+		color: #c6c6c6;
+		font-size: 14px;
+		margin-top: 5px;
 	}
 }

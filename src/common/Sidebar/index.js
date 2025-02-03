@@ -4,14 +4,18 @@ import components from '../../components/index.js'
 const Sidebar = () => {
 	const sidebarElement = document.getElementById('sidebar')
 
-	sidebarElement.innerHTML = /*html*/ `
+	const render = () => {
+		sidebarElement.innerHTML = /*html*/ `
         <style>
             @import url('/src/common/Sidebar/styles.css');
         </style>
 
         <header>
-            <h1>GOMponents</h1>
-            
+            <div>
+                <h1>Gomlib</h1>
+                <span>web components library</span>
+            </div>
+
             <button>
                 <ion-icon name="logo-github"></ion-icon>
             </button>
@@ -53,6 +57,9 @@ const Sidebar = () => {
             </ul>
         </nav>
     `
+	}
+
+	render()
 
 	const navItems = document.querySelectorAll('#sidebar li')
 
