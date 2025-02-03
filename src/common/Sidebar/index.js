@@ -70,18 +70,22 @@ const Sidebar = () => {
 	})
 
 	window.onload = () => {
+		const hasMatchRoute = handleMatchRoute(window.location.pathname)
+
 		const lastPathnamePart = window.location.pathname.split('/').pop()
 
-		if (lastPathnamePart) {
-			const navItemElement = Array.from(navItems).find(
-				(item) => item.id === `nav-${lastPathnamePart}`
-			)
+		if (hasMatchRoute) {
+			if (lastPathnamePart) {
+				const navItemElement = Array.from(navItems).find(
+					(item) => item.id === `nav-${lastPathnamePart}`
+				)
 
-			if (navItemElement) navItemElement.classList.add('active')
-		} else
-			document
-				.getElementById(`nav-${ROUTES['/'].name.toLowerCase()}`)
-				.classList.add('active')
+				if (navItemElement) navItemElement.classList.add('active')
+			} else
+				document
+					.getElementById(`nav-${ROUTES['/'].name.toLowerCase()}`)
+					.classList.add('active')
+		}
 	}
 }
 

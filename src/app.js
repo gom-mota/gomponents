@@ -30,7 +30,7 @@ const renderPageContent = async (name, params) => {
 		.setAttribute('content', description)
 }
 
-const handleMatchRoute = (pathname) =>
+window.handleMatchRoute = (pathname) =>
 	Object.keys(ROUTES).find((route) => {
 		const pattern = `^${route.replace(/:\w+/g, '([^/]+)')}$`
 		const regex = new RegExp(pattern)
