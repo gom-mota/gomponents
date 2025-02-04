@@ -1,13 +1,11 @@
 import ComponentSetting from '../../common/ComponentSetting/index.js'
 import components from '../../components/index.js'
 
-const Component = async ({ name = 'button' }) => {
+const Component = async ({ name }) => {
 	const tag = components[name]
+	const baseComponentPath = `/src/components/${tag}`
 
-	await import(`../../components/${tag}/index.js`)
-	const config = await fetch(`/src/components/${tag}/config.json`).then(
-		(response) => response.json()
-	)
+	if (tag) await import(`${baseComponentPath}/index.js`)
 
 	window.copyPreviewRenderCode = () => {
 		const previewRenderCode = document.getElementById(
@@ -47,14 +45,14 @@ const Component = async ({ name = 'button' }) => {
 
 		if (element.id === 'documentation') {
 			document.getElementById('documentation-tab-content').innerHTML =
-				await fetch(`/src/components/${tag}/doc.md`)
+				await fetch(`${baseComponentPath}/doc.md`)
 					.then((response) => response.text())
 					.then((markdown) => markdownToHtml(markdown))
 		}
 	}
 
 	const render = async () => {
-		if (!tag) return /*html*/ `<h1>Not found component</h1>`
+		if (!tag) return /*html*/ `<h1>${name} component not found.</h1>`
 
 		return /*html*/ `
 			<style>
@@ -95,9 +93,15 @@ const Component = async ({ name = 'button' }) => {
 		`
 	}
 
-	const after_render = () => {
-		document.getElementById('live-preview-tab-content').innerHTML +=
-			ComponentSetting(tag, config)
+	const after_render = async () => {
+		if (tag) {
+			const config = await fetch(`${baseComponentPath}/config.json`).then(
+				(response) => response.json()
+			)
+
+			document.getElementById('live-preview-tab-content').innerHTML +=
+				ComponentSetting(tag, config)
+		}
 	}
 
 	return {
