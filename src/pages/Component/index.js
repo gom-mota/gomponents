@@ -55,10 +55,6 @@ const Component = async ({ name }) => {
 		if (!tag) return /*html*/ `<h1>${name} component not found.</h1>`
 
 		return /*html*/ `
-			<style>
-				@import url('/src/pages/Component/style.css');
-			</style>
-
 			<div class='component-container'>
 				<header>
 					<h1>${name}</h1>

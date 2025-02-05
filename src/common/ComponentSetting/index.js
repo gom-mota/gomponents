@@ -44,10 +44,6 @@ const ComponentSetting = (props) => {
 	}
 
 	const render = /*html*/ `
-			<style>
-				@import url('/src/common/ComponentSetting/styles.css');
-			</style>
-
              <table class='component-setting'>
 				<thead>
 					<tr>

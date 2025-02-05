@@ -3,10 +3,6 @@ import components from '../../components/index.js'
 
 const Sidebar = () => {
 	const render = /*html*/ `
-        <style>
-            @import url('/src/common/Sidebar/styles.css');
-        </style>
-
         <header>
             <div>
                 <h1>Gomlib</h1>

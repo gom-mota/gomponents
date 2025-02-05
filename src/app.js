@@ -69,8 +69,10 @@ const handleRouteChange = () => {
 }
 
 window.navigateToRoute = (pathname) => {
-	window.history.pushState(null, null, pathname)
-	handleRouteChange()
+	if (pathname !== window.location.pathname) {
+		window.history.pushState(null, null, pathname)
+		handleRouteChange()
+	}
 }
 
 const handleRenderCommon = () => {
