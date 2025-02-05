@@ -41,14 +41,17 @@ const Component = async ({ name }) => {
 	}
 
 	window.handleClickTab = async (element) => {
-		handleRenderActiveTab(element)
-
-		if (element.id === 'documentation') {
+		if (
+			element.id === 'documentation' &&
+			!element.classList.contains('active')
+		) {
 			document.getElementById('documentation-tab-content').innerHTML =
 				await fetch(`${baseComponentPath}/doc.md`)
 					.then((response) => response.text())
 					.then((markdown) => markdownToHtml(markdown))
 		}
+
+		handleRenderActiveTab(element)
 	}
 
 	const render = async () => {

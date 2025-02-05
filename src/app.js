@@ -87,3 +87,5 @@ const init = () => {
 }
 
 init()
+
+//TODO: refatorar para deixar de criar funções no escopo global (window)
