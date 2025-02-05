@@ -2,10 +2,7 @@ import { ROUTES } from '../../utils.js'
 import components from '../../components/index.js'
 
 const Sidebar = () => {
-	const sidebarElement = document.getElementById('sidebar')
-
-	const render = () => {
-		sidebarElement.innerHTML = /*html*/ `
+	const render = /*html*/ `
         <style>
             @import url('/src/common/Sidebar/styles.css');
         </style>
@@ -56,37 +53,45 @@ const Sidebar = () => {
             </ul>
         </nav>
     `
-	}
 
-	render()
+	const after_render = () => {
+		const navItems = document.querySelectorAll('#sidebar li')
 
-	const navItems = document.querySelectorAll('#sidebar li')
-
-	navItems.forEach((item) => {
-		item.addEventListener('click', () => {
-			navItems.forEach((i) => i.classList.remove('active'))
-			item.classList.add('active')
+		navItems.forEach((item) => {
+			item.addEventListener('click', () => {
+				navItems.forEach((i) => i.classList.remove('active'))
+				item.classList.add('active')
+			})
 		})
-	})
 
-	window.onload = () => {
-		const hasMatchRoute = handleMatchRoute(window.location.pathname)
+		window.onload = () => {
+			const hasMatchRoute = handleMatchRoute(window.location.pathname)
 
-		const lastPathnamePart = window.location.pathname.split('/').pop()
+			const lastPathnamePart = window.location.pathname.split('/').pop()
 
-		if (hasMatchRoute) {
-			if (lastPathnamePart) {
-				const navItemElement = Array.from(navItems).find(
-					(item) => item.id === `nav-${lastPathnamePart}`
-				)
+			if (hasMatchRoute) {
+				if (lastPathnamePart) {
+					const navItemElement = Array.from(navItems).find(
+						(item) => item.id === `nav-${lastPathnamePart}`
+					)
 
-				if (navItemElement) navItemElement.classList.add('active')
-			} else
-				document
-					.getElementById(`nav-${ROUTES['/'].name.toLowerCase()}`)
-					.classList.add('active')
+					if (navItemElement) navItemElement.classList.add('active')
+				} else
+					document
+						.getElementById(`nav-${ROUTES['/'].name.toLowerCase()}`)
+						.classList.add('active')
+			}
 		}
 	}
+
+	return { render, after_render }
 }
 
-export default Sidebar
+const mount = (container) => {
+	const { render, after_render } = Sidebar()
+
+	container.innerHTML += render
+	after_render()
+}
+
+export default mount

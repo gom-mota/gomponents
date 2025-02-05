@@ -74,7 +74,7 @@ window.navigateToRoute = (pathname) => {
 }
 
 const handleRenderCommon = () => {
-	Sidebar()
+	Sidebar(document.getElementById('sidebar'))
 }
 
 const init = () => {

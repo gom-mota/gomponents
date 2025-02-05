@@ -99,8 +99,11 @@ const Component = async ({ name }) => {
 				(response) => response.json()
 			)
 
-			document.getElementById('live-preview-tab-content').innerHTML +=
-				ComponentSetting(tag, config)
+			const livePreviewTabContentElement = document.getElementById(
+				'live-preview-tab-content'
+			)
+
+			ComponentSetting(livePreviewTabContentElement, { tag, config })
 		}
 	}
 
