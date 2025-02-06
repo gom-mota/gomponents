@@ -1,15 +1,17 @@
-const ComponentSetting = (component, config) => {
+const ComponentSetting = (props) => {
+	const { tag, config } = props
+
 	const inputTypes = {
 		text: (prop, key) => {
 			return /*html*/ `
-                <input type="text" placeholder="Digite aqui." value="${prop.default}" oninput="updateComponent('${component}', '${key}', this.value)">
+                <input type="text" placeholder="Digite aqui." value="${prop.default}" oninput="updateComponent('${tag}', '${key}', this.value)">
             `
 		},
 		check: (prop, key) => {
 			return /*html*/ `
                 <input type="checkbox" id="${key}" ${
 				prop.default ? 'checked' : ''
-			} onchange="updateComponent('${component}', '${key}', this.checked)">
+			} onchange="updateComponent('${tag}', '${key}', this.checked)">
             `
 		},
 		radio: (prop, key) => {
@@ -18,7 +20,7 @@ const ComponentSetting = (component, config) => {
 					(option) => /*html*/ `
 						<input type="radio" name="${key}" id="${option}" value="${option}" ${
 						prop.default === option ? 'checked' : ''
-					} onclick="updateComponent('${component}', '${key}', this.value)">
+					} onclick="updateComponent('${tag}', '${key}', this.value)">
                         
 						<label for="${option}">${option}</label>
                     `
@@ -34,18 +36,14 @@ const ComponentSetting = (component, config) => {
 				.join('')
 
 			return /*html*/ `
-                <select onchange="updateComponent('${component}', '${key}', this.value)">
+                <select onchange="updateComponent('${tag}', '${key}', this.value)">
                     ${options}
                 </select>
             `
 		},
 	}
 
-	const render = () => /*html*/ `
-			<style>
-				@import url('/src/common/ComponentSetting/styles.css');
-			</style>
-
+	const render = /*html*/ `
              <table class='component-setting'>
 				<thead>
 					<tr>
@@ -72,21 +70,30 @@ const ComponentSetting = (component, config) => {
 			</table>
         `
 
-	window.updateComponent = (component, propName, value) => {
-		const renderedComponent = document.querySelector(component)
-		renderedComponent.setAttribute(propName, value)
+	const after_render = () => {
+		window.updateComponent = (tag, propName, value) => {
+			const renderedComponent = document.querySelector(tag)
+			renderedComponent.setAttribute(propName, value)
+		}
+
+		const setInitialProps = () => {
+			Object.entries(config.properties).forEach(([key, prop]) => {
+				if (prop.default !== undefined)
+					updateComponent(tag, key, prop.default)
+			})
+		}
+
+		setInitialProps()
 	}
 
-	const setInitialProps = (config, component) => {
-		Object.entries(config.properties).forEach(([key, prop]) => {
-			if (prop.default !== undefined)
-				updateComponent(component, key, prop.default)
-		})
-	}
-
-	setInitialProps(config, component)
-
-	return render()
+	return { render, after_render }
 }
 
-export default ComponentSetting
+const mount = (container, props) => {
+	const { render, after_render } = ComponentSetting(props)
+
+	container.innerHTML += render
+	after_render()
+}
+
+export default mount

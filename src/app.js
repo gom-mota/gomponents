@@ -69,12 +69,14 @@ const handleRouteChange = () => {
 }
 
 window.navigateToRoute = (pathname) => {
-	window.history.pushState(null, null, pathname)
-	handleRouteChange()
+	if (pathname !== window.location.pathname) {
+		window.history.pushState(null, null, pathname)
+		handleRouteChange()
+	}
 }
 
 const handleRenderCommon = () => {
-	Sidebar()
+	Sidebar(document.getElementById('sidebar'))
 }
 
 const init = () => {
@@ -85,3 +87,5 @@ const init = () => {
 }
 
 init()
+
+//TODO: refatorar para deixar de criar funções no escopo global (window)

@@ -41,24 +41,23 @@ const Component = async ({ name }) => {
 	}
 
 	window.handleClickTab = async (element) => {
-		handleRenderActiveTab(element)
-
-		if (element.id === 'documentation') {
+		if (
+			element.id === 'documentation' &&
+			!element.classList.contains('active')
+		) {
 			document.getElementById('documentation-tab-content').innerHTML =
 				await fetch(`${baseComponentPath}/doc.md`)
 					.then((response) => response.text())
 					.then((markdown) => markdownToHtml(markdown))
 		}
+
+		handleRenderActiveTab(element)
 	}
 
 	const render = async () => {
 		if (!tag) return /*html*/ `<h1>${name} component not found.</h1>`
 
 		return /*html*/ `
-			<style>
-				@import url('/src/pages/Component/style.css');
-			</style>
-
 			<div class='component-container'>
 				<header>
 					<h1>${name}</h1>
@@ -99,8 +98,11 @@ const Component = async ({ name }) => {
 				(response) => response.json()
 			)
 
-			document.getElementById('live-preview-tab-content').innerHTML +=
-				ComponentSetting(tag, config)
+			const livePreviewTabContentElement = document.getElementById(
+				'live-preview-tab-content'
+			)
+
+			ComponentSetting(livePreviewTabContentElement, { tag, config })
 		}
 	}
 
