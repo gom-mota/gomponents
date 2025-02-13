@@ -9,9 +9,9 @@ const Sidebar = () => {
                 <span>web components library</span>
             </div>
 
-            <button>
+            <a href="https://github.com/gom-mota/gomponents" target="_blank">
                 <ion-icon name="logo-github"></ion-icon>
-            </button>
+            </a>
         </header>
         
         <nav>
@@ -44,7 +44,7 @@ const Sidebar = () => {
                                 </li>
                             `
 						)
-						.join('')}                    
+						.join('')}
                 </ul>
             </ul>
         </nav>
