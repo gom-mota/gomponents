@@ -12,10 +12,24 @@ body {
 	display: flex;
 }
 
+.hljs {
+	background-color: #0e1116;
+	border: 1px solid #1e262b;
+	border-radius: 10px;
+}
+
 h1 {
 	font-size: 1.7rem;
 	margin-bottom: 20px;
 	color: #e4e4ee;
+}
+
+a {
+	color: #e0ff8b;
+
+	&:hover {
+		color: #e8ffa8;
+	}
 }
 
 h2 {
@@ -45,7 +59,7 @@ h2 {
 
 #content {
 	width: 960px;
-	margin: 0 auto;
+	margin: 2rem auto;
 	padding: 1rem;
 }
 
@@ -231,8 +245,7 @@ h2 {
 		gap: 0.2rem;
 
 		h1 {
-			font-size: 22px;
-			font-weight: bold;
+			margin-bottom: 0;
 			text-transform: capitalize;
 		}
 
@@ -257,6 +270,7 @@ h2 {
 	flex-direction: row;
 	gap: 1rem;
 	position: relative;
+	margin-top: 1rem;
 	margin-bottom: 1rem;
 
 	&::after {
@@ -358,4 +372,54 @@ h2 {
 	p {
 		margin-bottom: 14px;
 	}
+}
+
+.website-examples-container {
+	display: flex;
+	flex-direction: row;
+	gap: 1.5rem;
+}
+
+.website-card-container {
+	display: flex;
+	flex-direction: row;
+	gap: 0.7rem;
+	border-radius: 7px;
+	border: 1px solid;
+	border-color: #1e262b;
+	padding: 0.7rem 2rem 0.7rem 1.5rem;
+	align-items: center;
+	text-decoration: none;
+	color: #e4e4ee;
+	position: relative;
+
+	&:hover {
+		background-color: #1a222a;
+		color: #e4e4ee;
+	}
+
+	img {
+		width: 32px;
+		height: 32px;
+	}
+
+	> div {
+		display: flex;
+		flex-direction: column;
+	}
+
+	ion-icon {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #c0c0c0;
+		width: 14px;
+		height: 14px;
+	}
+}
+
+.website-description {
+	color: #959595;
+	font-size: 14px;
+	margin-top: -8px;
 }

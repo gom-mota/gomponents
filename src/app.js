@@ -24,7 +24,7 @@ const renderPageContent = async (name, params) => {
 	content.innerHTML = await render()
 	await after_render()
 
-	document.title = `${title} | gomponents`
+	document.title = `${title} | gomlib`
 	document
 		.querySelector('meta[name="description"]')
 		.setAttribute('content', description)

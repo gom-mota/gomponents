@@ -6,7 +6,7 @@ const Sidebar = () => {
         <header>
             <div>
                 <h1>Gomlib</h1>
-                <span>web components library</span>
+                <span>web components lib</span>
             </div>
 
             <a href="https://github.com/gom-mota/gomponents" target="_blank">
@@ -16,7 +16,7 @@ const Sidebar = () => {
         
         <nav>
             <ul>
-                <li>Getting Started</li>
+                <li>Ponto de Partida</li>
 
                 <ul>
                     ${Object.entries(ROUTES)
@@ -33,7 +33,7 @@ const Sidebar = () => {
 						.join('')}
                 </ul>
 
-                <li>Components</li>
+                <li>Componentes</li>
 
                 <ul>
                     ${Object.keys(components)

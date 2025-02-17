@@ -1,6 +1,7 @@
 export const ROUTES = {
-	'/': { name: 'Introduction', label: 'Introduction', nav: true },
-	'/component/:name': { name: 'Component', label: 'Component' },
+	'/': { name: 'Introduction', label: 'Introdução', nav: true },
+	'/usage': { name: 'Usage', label: 'Uso', nav: true },
+	'/component/:name': { name: 'Component', label: 'Componente' },
 }
 
 window.markdownToHtml = (markdown) => {

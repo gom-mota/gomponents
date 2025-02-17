@@ -68,8 +68,8 @@ const Component = async ({ name }) => {
 				</header>
 
 				<div id='component-tabs-container' class='component-tabs-container'>
-						<button id='live-preview' class='tab-button active' onclick='handleClickTab(this)'>Live Preview</button>
-						<button id='documentation' class='tab-button' onclick='handleClickTab(this)'>Documentation</button>
+						<button id='live-preview' class='tab-button active' onclick='handleClickTab(this)'>Pré-visualização</button>
+						<button id='documentation' class='tab-button' onclick='handleClickTab(this)'>Documentação</button>
 				</div>
 
 				<div id='component-tabs-contents'>
