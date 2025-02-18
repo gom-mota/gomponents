@@ -5,8 +5,8 @@ const Introduction = async () => {
 			<h1>Introdução</h1>
 			
 			<p>Gomlib é uma biblioteca focada no uso de Web Components, uma tecnologia versátil no desenvolvimento web
-			moderno. Nosso objetivo é oferecer elementos HTML personalizados que funcionem de forma consistente em
-			diferentes ambientes e plataformas.</p>
+			moderno. Nosso objetivo é oferecer elementos HTML personalizados com nossa identidade visual, que funcionem
+			de forma consistente em diferentes ambientes e plataformas.</p>
 			
 			<h2>Como surgiu o projeto?</h2>
 

@@ -392,6 +392,7 @@ h2 {
 	text-decoration: none;
 	color: #e4e4ee;
 	position: relative;
+	background-color: #10161c;
 
 	&:hover {
 		background-color: #1a222a;
