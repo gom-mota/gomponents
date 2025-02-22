@@ -1,6 +1,6 @@
 class GomButton extends HTMLElement {
 	static get observedAttributes() {
-		return ['label', 'disabled', 'variant']
+		return ['label', 'disabled', 'variant', 'color']
 	}
 
 	constructor() {
@@ -11,6 +11,7 @@ class GomButton extends HTMLElement {
 		this._label = 'Button'
 		this._disabled = false
 		this._variant = 'primary'
+		this._color = 'default'
 	}
 
 	// Método para atualizar o label
@@ -41,6 +42,17 @@ class GomButton extends HTMLElement {
 		}
 	}
 
+	updateColor() {
+		const buttonElement = this.shadowRoot.querySelector('#botao')
+		if (buttonElement) {
+			if (this._color) {
+				buttonElement.setAttribute('color', this._color)
+			} else {
+				buttonElement.removeAttribute('color')
+			}
+		}
+	}
+
 	// Método que inicializa o template do componente
 	render() {
 		// Template do componente
@@ -48,9 +60,9 @@ class GomButton extends HTMLElement {
             <style>
                 @import url('/src/components/gom-button/styles.css');
             </style>
-            <button id="botao" ${this._disabled ? 'disabled' : ''} variant="${
-			this._variant
-		}">
+            <button id="botao" ${this._disabled ? 'disabled' : ''} color="${
+			this._color
+		}" variant="${this._variant}">
                 <span id="label">${this._label}</span>
             </button>
         `
@@ -73,6 +85,10 @@ class GomButton extends HTMLElement {
 			case 'variant':
 				this._variant = newValue
 				this.updateVariant()
+				break
+			case 'color':
+				this._color = newValue
+				this.updateColor()
 				break
 		}
 	}

@@ -1,42 +1,96 @@
-/* Estilos gerais para o botão */
 button {
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	color: white;
+	border: none;
+	border-radius: 7px;
+	padding: 0.5rem 1rem;
+	font-size: 15px;
+	cursor: pointer;
 }
 
-/* Estilo global para quando o botão estiver desabilitado */
 button:disabled {
-    cursor: auto; /* Estilo do cursor quando desabilitado */
+	cursor: auto;
 }
 
-/* Variantes do botão */
-button[variant="primary"] {
-    background-color: #007bff;
+button[variant='primary'] {
+	color: #0d1318;
+
+	&[color='default'] {
+		background-color: #e0ff8b;
+	}
+
+	&[color='alert'] {
+		background-color: #ffa58b;
+	}
 }
 
-button[variant="primary"]:hover {
-    background-color: #0056b3;
+button[variant='primary']:hover {
+	&[color='default'] {
+		background-color: #c4e66f;
+	}
+
+	&[color='alert'] {
+		background-color: #ef9074;
+	}
 }
 
-button[variant="primary"]:disabled {
-    background-color: #3b5674;
-    color: #acacac;
+button[variant='primary']:disabled {
+	&[color='default'] {
+		background-color: #606a43;
+	}
+
+	&[color='alert'] {
+		background-color: #6a4f43;
+	}
 }
 
-button[variant="secondary"] {
-    background-color: #dc3545;
+button[variant='secondary'] {
+	background: #1a222a;
+
+	&[color='default'] {
+		color: #eaffb1;
+	}
+
+	&[color='alert'] {
+		color: #ffc8b1;
+	}
 }
 
-button[variant="secondary"]:hover {
-    background-color: #c82333;
+button[variant='secondary']:hover {
+	background: #1f272f;
 }
 
-button[variant="secondary"]:disabled {
-    background-color: #8a565b;
-    color: #acacac;
+button[variant='secondary']:disabled {
+	background-color: #151b20;
+
+	&[color='default'] {
+		color: #7f8d68;
+	}
+
+	&[color='alert'] {
+		color: #8d7268;
+	}
+}
+
+button[variant='text'] {
+	background: none;
+	text-decoration: underline;
+	padding: 0.5rem;
+
+	&[color='default'] {
+		color: #e0ff8b;
+	}
+
+	&[color='alert'] {
+		color: #ffa58b;
+	}
+}
+
+button[variant='text']:disabled {
+	&[color='default'] {
+		color: #929d73;
+	}
+
+	&[color='alert'] {
+		color: #9d8173;
+	}
 }

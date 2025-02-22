@@ -1,20 +1,26 @@
 {
-    "properties": {
-        "label": {
-            "description": "Texto que fica dentro do botão.",
-            "type": "text",
-            "default": "Botão"
-        },
-        "disabled": {
-            "description": "Estado habilitado/desabilitado.",
-            "type": "check",
-            "default": false
-        },
-        "variant": {
-            "description": "Cor botão",
-            "type": "radio",
-            "options": ["primary", "secondary"],
-            "default": "primary"
-        }
-    }
+	"properties": {
+		"label": {
+			"description": "Texto que fica dentro do botão.",
+			"type": "text",
+			"default": "Botão"
+		},
+		"disabled": {
+			"description": "Estado habilitado/desabilitado.",
+			"type": "check",
+			"default": false
+		},
+		"variant": {
+			"description": "Variante do Botão",
+			"type": "radio",
+			"options": ["primary", "secondary", "text"],
+			"default": "primary"
+		},
+		"color": {
+			"description": "Cor do Botão",
+			"type": "radio",
+			"options": ["default", "alert"],
+			"default": "default"
+		}
+	}
 }

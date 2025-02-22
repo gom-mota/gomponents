@@ -316,7 +316,7 @@ h2 {
 
 .component-preview-container {
 	display: flex;
-	gap: 0.5rem;
+	gap: 1rem;
 	align-items: center;
 	justify-content: center;
 	border-radius: 10px;
@@ -347,6 +347,14 @@ h2 {
 
 	&.doc {
 		justify-content: flex-start;
+		flex-direction: column;
+
+		> div {
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
+			width: 100%;
+		}
 	}
 }
 
@@ -423,4 +431,24 @@ h2 {
 	color: #959595;
 	font-size: 14px;
 	margin-top: -8px;
+}
+
+.hex-color-block {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	height: 55px;
+	padding: 0.5rem;
+	position: relative;
+
+	& > div {
+		content: '';
+		position: absolute;
+		top: 0;
+		width: 100%;
+		width: 40px;
+		height: 40px;
+		border-radius: 100%;
+		background: inherit;
+	}
 }
