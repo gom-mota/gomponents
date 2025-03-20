@@ -436,19 +436,21 @@ h2 {
 .hex-color-block {
 	display: flex;
 	align-items: flex-end;
-	justify-content: center;
+	justify-content: flex-start;
 	height: 55px;
-	padding: 0.5rem;
-	position: relative;
+	width: 80px;
+	color: #0d1318;
+	font-size: 13px;
 
-	& > div {
-		content: '';
-		position: absolute;
-		top: 0;
-		width: 100%;
-		width: 40px;
-		height: 40px;
-		border-radius: 100%;
-		background: inherit;
+	span {
+		padding: 0.5rem;
+	}
+}
+
+.doc-container {
+	> div {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
 	}
 }

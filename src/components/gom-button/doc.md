@@ -1,16 +1,46 @@
-Este é um botão que pode ser habilitado ou desabilitado. Você pode personalizar o texto exibido no botão.
+Este é um botão simples que aciona uma função de retorno ao ser clicado.
 
 ## Color
 
-<div style='display:flex;flex-direction:row;gap:0.5rem'>
-    <div class="hex-color-block"><div style='background: #e0ff8b'></div>default</div>
-    <div class="hex-color-block"><div style='background: #ffa58b'></div>alert</div>
+<div>
+`color #e0ff8b default
+`color #ffa58b alert
 </div>
 
 ## Variants
 
-`render<div><gom-button label="Primary"></gom-button> <gom-button label="Secondary" variant="secondary"></gom-button> <gom-button label="Text" variant="text"></gom-button></div><div><gom-button label="Primary" color="alert"></gom-button> <gom-button label="Secondary" variant="secondary" color="alert"></gom-button> <gom-button label="Text" variant="text" color="alert"></gom-button></div>
+Aparência do botão. Pode ser utilizado para diferenciar ações em tela.
+
+`start-render
+
+<div>
+    <gom-button label="Primary"></gom-button>
+    <gom-button label="Secondary" variant="secondary"></gom-button>
+    <gom-button label="Text" variant="text"></gom-button>
+</div>
+<div>
+    <gom-button label="Primary" color="alert"></gom-button>
+    <gom-button label="Secondary" variant="secondary" color="alert"></gom-button>
+    <gom-button label="Text" variant="text" color="alert"></gom-button>
+</div>
+
+`end-render
 
 ## Disabled
 
-`render<div><gom-button label="Primary" disabled="true"></gom-button> <gom-button label="Secondary" variant="secondary" disabled="true"></gom-button> <gom-button label="Text" variant="text" disabled="true"></gom-button></div><div><gom-button label="Primary" color="alert" disabled="true"></gom-button> <gom-button label="Secondary" variant="secondary" color="alert" disabled="true"></gom-button> <gom-button label="Text" variant="text" color="alert" disabled="true"></gom-button></div>
+Estado de desabilitado do botão.
+
+`start-render
+
+<div>
+    <gom-button label="Primary" disabled="true"></gom-button>
+    <gom-button label="Secondary" variant="secondary" disabled="true"></gom-button>
+    <gom-button label="Text" variant="text" disabled="true"></gom-button>
+</div>
+<div>
+    <gom-button label="Primary" color="alert" disabled="true"></gom-button>
+    <gom-button label="Secondary" variant="secondary" color="alert" disabled="true"></gom-button>
+    <gom-button label="Text" variant="text" color="alert" disabled="true"></gom-button>
+</div>
+
+`end-render

@@ -5,8 +5,8 @@ const Introduction = async () => {
 			<h1>Introdução</h1>
 			
 			<p>Gomlib é uma biblioteca focada no uso de Web Components, uma tecnologia versátil no desenvolvimento web
-			moderno. Nosso objetivo é oferecer elementos HTML personalizados com nossa identidade visual, que funcionem
-			de forma consistente em diferentes ambientes e plataformas.</p>
+			moderno. O objetivo é oferecer elementos HTML personalizados, que funcionem de forma consistente em
+			diferentes ambientes.</p>
 			
 			<h2>Como surgiu o projeto?</h2>
 
@@ -34,7 +34,7 @@ const Introduction = async () => {
 			<h2>Gostou da ideia?</h2>
 
 			<p>O site está hospedado sem custos no GitHub Pages. Se você deseja criar sua própria biblioteca ou
-			reutilizar os componentes, o código está disponível em nosso
+			reaproveitar o código de uma determinada parte, o código está disponível em nosso
 			<a href='https://github.com/gom-mota/gomponents' target='_blank'>repositório</a>.</p>
 		</div>
 		`
