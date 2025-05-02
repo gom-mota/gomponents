@@ -4,14 +4,16 @@ const ComponentSetting = (props) => {
 	const inputTypes = {
 		text: (prop, key) => {
 			return /*html*/ `
-                <input type="text" placeholder="Digite aqui." value="${prop.default}" oninput="updateComponent('${tag}', '${key}', this.value)">
+                <input type="text" placeholder="Digite aqui." value="${
+					prop.default || ''
+				}" oninput="updateComponent('${key}', this.value)">
             `
 		},
 		check: (prop, key) => {
 			return /*html*/ `
                 <input type="checkbox" id="${key}" ${
 				prop.default ? 'checked' : ''
-			} onchange="updateComponent('${tag}', '${key}', this.checked)">
+			} onchange="updateComponent('${key}', this.checked)">
             `
 		},
 		radio: (prop, key) => {
@@ -20,7 +22,7 @@ const ComponentSetting = (props) => {
 					(option) => /*html*/ `
 						<input type="radio" name="${key}" id="${option}" value="${option}" ${
 						prop.default === option ? 'checked' : ''
-					} onclick="updateComponent('${tag}', '${key}', this.value)">
+					} onclick="updateComponent('${key}', this.value)">
                         
 						<label for="${option}">${option}</label>
                     `
@@ -36,7 +38,7 @@ const ComponentSetting = (props) => {
 				.join('')
 
 			return /*html*/ `
-                <select onchange="updateComponent('${tag}', '${key}', this.value)">
+                <select onchange="updateComponent('${key}', this.value)">
                     ${options}
                 </select>
             `
@@ -61,8 +63,8 @@ const ComponentSetting = (props) => {
 								`<tr>
 									<td>${key}</td>
 									<td>${prop.description}</td>
-									<td>${prop.default}</td>
-									<td>${inputTypes[prop.type](prop, key) || '-'}</td>
+									<td>${prop.type === 'function' ? '-' : prop.default || '-'}</td>
+									<td>${inputTypes[prop.type] ? inputTypes[prop.type](prop, key) : '-'}</td>
 								</tr>`
 						)
 						.join('')}
@@ -71,15 +73,15 @@ const ComponentSetting = (props) => {
         `
 
 	const after_render = () => {
-		window.updateComponent = (tag, propName, value) => {
-			const renderedComponent = document.querySelector(tag)
+		const renderedComponent = document.querySelector(tag)
+
+		window.updateComponent = (propName, value) =>
 			renderedComponent.setAttribute(propName, value)
-		}
 
 		const setInitialProps = () => {
 			Object.entries(config.properties).forEach(([key, prop]) => {
-				if (prop.default !== undefined)
-					updateComponent(tag, key, prop.default)
+				if (prop.type !== 'function' && prop.default !== undefined)
+					updateComponent(key, prop.default)
 			})
 		}
 

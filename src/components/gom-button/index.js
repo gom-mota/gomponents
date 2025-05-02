@@ -12,13 +12,18 @@ class GomButton extends HTMLElement {
 		this._disabled = false
 		this._variant = 'primary'
 		this._color = 'default'
+
+		this.onClick = null
 	}
 
 	// Método para atualizar o label
 	updateLabel() {
-		const labelElement = this.shadowRoot.querySelector('#label')
-		if (labelElement) {
-			labelElement.textContent = this._label
+		if (this._label) {
+			const labelElement = this.shadowRoot.querySelector('#label')
+
+			if (labelElement) {
+				labelElement.textContent = this._label
+			}
 		}
 	}
 
@@ -50,6 +55,23 @@ class GomButton extends HTMLElement {
 			} else {
 				buttonElement.removeAttribute('color')
 			}
+		}
+	}
+
+	handleOnClick(button) {
+		if (button) {
+			button.addEventListener('click', () => {
+				// Executa o callback diretamente se existir
+				if (typeof this.onClick === 'function') this.onClick()
+
+				// Dispara um evento customizado
+				this.dispatchEvent(
+					new CustomEvent('gom-click', {
+						bubbles: true,
+						composed: true,
+					})
+				)
+			})
 		}
 	}
 
@@ -93,9 +115,17 @@ class GomButton extends HTMLElement {
 		}
 	}
 
+	handleCustomCallbacks() {
+		const button = this.shadowRoot.querySelector('#botao')
+
+		this.handleOnClick(button)
+	}
+
 	// Método chamado quando o componente é adicionado ao DOM
 	connectedCallback() {
 		this.shadowRoot.innerHTML = this.render()
+
+		this.handleCustomCallbacks()
 	}
 
 	// Método chamado quando o componente é removido do DOM

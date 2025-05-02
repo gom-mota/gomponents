@@ -11,7 +11,7 @@
 			"default": false
 		},
 		"variant": {
-			"description": "Variante do Botão",
+			"description": "Estilo do Botão",
 			"type": "radio",
 			"options": ["primary", "secondary", "text"],
 			"default": "primary"
@@ -21,6 +21,11 @@
 			"type": "radio",
 			"options": ["default", "alert"],
 			"default": "default"
+		},
+		"onClick": {
+			"description": "Callback chamado ao clicar no botão",
+			"type": "function",
+			"default": "()=>console.log('button clicked')"
 		}
 	}
 }

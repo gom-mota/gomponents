@@ -5,7 +5,17 @@ const Component = async ({ name }) => {
 	const tag = components[name]
 	const baseComponentPath = `/src/components/${tag}`
 
-	if (tag) await import(`${baseComponentPath}/index.js`)
+	let config
+
+	const pageName = tag ? name : 'not found'
+
+	if (tag) {
+		await import(`${baseComponentPath}/index.js`)
+
+		config = await fetch(`${baseComponentPath}/config.json`).then(
+			(response) => response.json()
+		)
+	}
 
 	window.copyPreviewRenderCode = () => {
 		const previewRenderCode = document.getElementById(
@@ -40,6 +50,28 @@ const Component = async ({ name }) => {
 		})
 	}
 
+	const handleComponentCallbacks = () => {
+		const components = document.querySelectorAll(tag)
+
+		if (config && config.properties) {
+			Object.entries(config.properties).forEach(([key, prop]) => {
+				if (prop.type === 'function') {
+					const callback = eval(prop.default)
+
+					const [firstComponent, ...otherComponents] = components
+
+					firstComponent[key] = callback
+
+					for (const component of otherComponents) {
+						component[key] = (...args) => {
+							firstComponent[key](...args)
+						}
+					}
+				}
+			})
+		}
+	}
+
 	window.handleClickTab = async (element) => {
 		if (
 			element.id === 'documentation' &&
@@ -49,6 +81,8 @@ const Component = async ({ name }) => {
 				await fetch(`${baseComponentPath}/doc.md`)
 					.then((response) => response.text())
 					.then((markdown) => markdownToHtml(markdown))
+
+			handleComponentCallbacks()
 		}
 
 		handleRenderActiveTab(element)
@@ -94,21 +128,19 @@ const Component = async ({ name }) => {
 
 	const after_render = async () => {
 		if (tag) {
-			const config = await fetch(`${baseComponentPath}/config.json`).then(
-				(response) => response.json()
-			)
-
 			const livePreviewTabContentElement = document.getElementById(
 				'live-preview-tab-content'
 			)
 
 			ComponentSetting(livePreviewTabContentElement, { tag, config })
+
+			handleComponentCallbacks()
 		}
 	}
 
 	return {
-		title: name,
-		description: `${name} component page`,
+		title: pageName,
+		description: `${pageName} component page`,
 		render,
 		after_render,
 	}

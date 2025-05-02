@@ -1,13 +1,17 @@
 Este é um botão simples que aciona uma função de retorno ao ser clicado.
 
-## Color
+## label
+
+Texto que será exibido dentro do botão.
+
+## color
 
 <div>
 `color #e0ff8b default
 `color #ffa58b alert
 </div>
 
-## Variants
+## variant
 
 Aparência do botão. Pode ser utilizado para diferenciar ações em tela.
 
@@ -26,7 +30,7 @@ Aparência do botão. Pode ser utilizado para diferenciar ações em tela.
 
 `end-render
 
-## Disabled
+## disabled
 
 Estado de desabilitado do botão.
 
@@ -44,3 +48,7 @@ Estado de desabilitado do botão.
 </div>
 
 `end-render
+
+## onClick
+
+Callback chamado ao clicar no botão
