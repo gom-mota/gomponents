@@ -44,29 +44,35 @@ button[variant='primary']:disabled {
 }
 
 button[variant='secondary'] {
-	background: #1a222a;
-
 	&[color='default'] {
+		background: #252b20;
 		color: #eaffb1;
 	}
 
 	&[color='alert'] {
+		background: #2b2320;
 		color: #ffc8b1;
 	}
 }
 
 button[variant='secondary']:hover {
-	background: #1f272f;
+	&[color='default'] {
+		background: #23281e;
+	}
+
+	&[color='alert'] {
+		background: #28211e;
+	}
 }
 
 button[variant='secondary']:disabled {
-	background-color: #151b20;
-
 	&[color='default'] {
+		background: #1d221d;
 		color: #7f8d68;
 	}
 
 	&[color='alert'] {
+		background: #221f1d;
 		color: #8d7268;
 	}
 }

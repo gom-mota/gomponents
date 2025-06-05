@@ -2,7 +2,7 @@ import ComponentSetting from '../../common/ComponentSetting/index.js'
 import components from '../../components/index.js'
 
 const Component = async ({ name }) => {
-	const tag = components[name]
+	const tag = components.expose[name]
 	const baseComponentPath = `/src/components/${tag}`
 
 	let config

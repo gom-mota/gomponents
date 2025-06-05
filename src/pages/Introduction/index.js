@@ -7,15 +7,12 @@ const Introduction = async () => {
 			<p>Gomlib é uma biblioteca focada no uso de Web Components, uma tecnologia versátil no desenvolvimento web
 			moderno. O objetivo é oferecer elementos HTML personalizados, que funcionem de forma consistente em
 			diferentes ambientes.</p>
-			
+
 			<h2>Como surgiu o projeto?</h2>
 
-			<p>A biblioteca nasceu do meu processo de aprendizagem sobre Web Components. Ao explorar essa tecnologia,
-			decidi disponibilizar os resultados online para utilização em outros projetos.</p>
-			
-			<p>O foco do projeto é criar algo simples, flexível e intuitivo, permitindo a construção rápida de
-			componentes personalizados. Este site serve como um ponto de partida para você explorar e testar os
-			componentes, além de entender como essa tecnologia pode transformar a criação de interfaces web.</p>
+			<p>O projeto nasceu durante minha jornada de aprendizado sobre Web Components. Resolvi compartilhar os
+			resultados online para que, ao explorar o site/código, outras pessoas possam compreender de forma simples e
+			prática como essa tecnologia funciona.</p>
 
 			<p>Abaixo, confira alguns exemplos de sites que utilizam a biblioteca. Eles mostram como os Web Components
 			podem ser aplicados em diferentes tipos de aplicações e como eles se comportam em ambientes de produção.</p>
@@ -33,9 +30,10 @@ const Introduction = async () => {
 
 			<h2>Gostou da ideia?</h2>
 
-			<p>O site está hospedado sem custos no GitHub Pages. Se você deseja criar sua própria biblioteca ou
-			reaproveitar o código de uma determinada parte, o código está disponível em nosso
+			<p>O site está hospedado sem custos no GitHub Pages. Se você deseja dar os primeiros passos para criar sua própria biblioteca ou
+			reaproveitar o código de determinada parte, acesse o
 			<a href='https://github.com/gom-mota/gomponents' target='_blank'>repositório</a>.</p>
+			<gom-button label="repositório" variant="text"></gom-button>
 		</div>
 		`
 	}

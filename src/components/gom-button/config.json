@@ -3,12 +3,13 @@
 		"label": {
 			"description": "Texto que fica dentro do botão.",
 			"type": "text",
-			"default": "Botão"
+			"default": "Button"
 		},
-		"disabled": {
-			"description": "Estado habilitado/desabilitado.",
-			"type": "check",
-			"default": false
+		"color": {
+			"description": "Cor do Botão",
+			"type": "radio",
+			"options": ["default", "alert"],
+			"default": "default"
 		},
 		"variant": {
 			"description": "Estilo do Botão",
@@ -16,11 +17,10 @@
 			"options": ["primary", "secondary", "text"],
 			"default": "primary"
 		},
-		"color": {
-			"description": "Cor do Botão",
-			"type": "radio",
-			"options": ["default", "alert"],
-			"default": "default"
+		"disabled": {
+			"description": "Estado habilitado/desabilitado.",
+			"type": "check",
+			"default": false
 		},
 		"onClick": {
 			"description": "Callback chamado ao clicar no botão",

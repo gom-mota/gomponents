@@ -1,36 +1,64 @@
 class GomAlert extends HTMLElement {
-	constructor() {
-		super()
-
-		const shadow = this.attachShadow({ mode: 'open' })
-
-		const style = document.createElement('style')
-
-		style.innerHTML = `
-             @import url('/src/components/gom-alert/styles.css');
-
-        `
-
-		this.alertDiv = document.createElement('div')
-		this.alertDiv.className = 'alert'
-		shadow.appendChild(style)
-		shadow.appendChild(this.alertDiv)
-
-		this.updateAlert()
+	static get observedAttributes() {
+		return ['content', 'type']
 	}
 
-	static get observedAttributes() {
-		return ['message', 'type']
+	constructor() {
+		super()
+		this.attachShadow({ mode: 'open' })
+
+		this._content = 'Alert!'
+		this._type = 'info'
+	}
+
+	updateContent() {
+		if (this._content) {
+			const alertElement = this.shadowRoot.querySelector('#alert')
+
+			if (alertElement) {
+				alertElement.textContent = this._content
+			}
+		}
+	}
+
+	updateType() {
+		const alertElement = this.shadowRoot.querySelector('#alert')
+		if (alertElement) {
+			if (this._type) {
+				alertElement.setAttribute('type', this._type)
+			} else {
+				alertElement.removeAttribute('type')
+			}
+		}
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
-		this.updateAlert()
+		// Verificar mudanças antes de atualizar
+		if (oldValue === newValue) return
+
+		switch (name) {
+			case 'content':
+				this._content = newValue
+				this.updateContent()
+				break
+			case 'type':
+				this._type = newValue
+				this.updateType()
+				break
+		}
 	}
 
-	updateAlert() {
-		this.alertDiv.innerText = this.getAttribute('message') || 'Alerta!'
-		this.alertDiv.className =
-			'alert ' + (this.getAttribute('type') || 'info')
+	connectedCallback() {
+		this.shadowRoot.innerHTML = this.render()
+	}
+
+	render() {
+		return /*html*/ `
+			<style>
+                 @import url('/src/components/gom-alert/styles.css');
+            </style>
+			<div id="alert" class="alert" type="${this._type}">${this._content}</div>
+		`
 	}
 }
 

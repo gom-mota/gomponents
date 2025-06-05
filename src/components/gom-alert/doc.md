@@ -1,5 +1,16 @@
-Este componente exibe uma mensagem de alerta. Você pode escolher entre diferentes tipos de alertas: info, warning e error.
+Este componente exibe uma mensagem de alerta com uma cor de destaque para cada ocasião.
 
-## Types
+## content
 
-`render<gom-alert type="info" message="info"></gom-alert><gom-alert type="warning" message="warning"></gom-alert><gom-alert type="error" message="error"></gom-alert>
+Texto que será exibido dentro do alerta.
+
+## type
+
+`start-render
+
+<gom-alert type="info" message="info"></gom-alert>
+<gom-alert type="success" message="success"></gom-alert>
+<gom-alert type="warning" message="warning"></gom-alert>
+<gom-alert type="error" message="error"></gom-alert>
+
+`end-render

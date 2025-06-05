@@ -12,6 +12,45 @@ body {
 	display: flex;
 }
 
+input[type='radio'] {
+	accent-color: #e0ff8b; /* Cor do botão */
+}
+
+input[type='checkbox'] {
+	appearance: none;
+	-webkit-appearance: none;
+	width: 28px;
+	height: 14px;
+	background-color: #858585;
+	border-radius: 50px;
+	position: relative;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+/* Círculo do interruptor */
+input[type='checkbox']::before {
+	content: '';
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #3b3b3b;
+	border-radius: 50%;
+	top: 2px;
+	left: 2px;
+	transition: transform 0.3s ease;
+}
+
+/* Estilo quando o checkbox está ativado */
+input[type='checkbox']:checked {
+	background-color: #e0ff8b; /* Cor do switch ativado */
+}
+
+/* Círculo do interruptor ao ser ativado */
+input[type='checkbox']:checked::before {
+	transform: translateX(14px); /* Move o círculo para a direita */
+}
+
 .hljs {
 	background-color: #0e1116;
 	border: 1px solid #1e262b;
@@ -321,9 +360,16 @@ h2 {
 	justify-content: center;
 	border-radius: 10px;
 	background-color: #0e1116;
-	padding: 2rem;
+	padding: 2.5rem;
 	border: 1px solid #1e262b;
 	position: relative;
+
+	> div {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
 
 	.copy-button {
 		position: absolute;

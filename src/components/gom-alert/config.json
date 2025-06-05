@@ -1,15 +1,15 @@
 {
-    "properties": {
-        "message": {
-            "description": "Mensagem",
-            "type": "text",
-            "default": "Alerta!"
-        },
-        "type": {
-            "description": "Tipo",
-            "type": "radio",
-            "options": ["info", "warning", "error"],
-            "default": "info"
-        }
-    }
+	"properties": {
+		"content": {
+			"description": "Mensagem",
+			"type": "text",
+			"default": "Alert!"
+		},
+		"type": {
+			"description": "Tipo",
+			"type": "radio",
+			"options": ["info", "success", "warning", "error"],
+			"default": "info"
+		}
+	}
 }

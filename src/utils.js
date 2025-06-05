@@ -25,18 +25,6 @@ window.markdownToHtml = (markdown) => {
 		else if (inRenderBlock) {
 			renderContent += `${line}\n` // Acumula as linhas dentro do bloco
 		}
-		// Verifica a palavra-chave "`color" seguida de um código de cor (ex: #ff0000) e texto opcional
-		else if (
-			/^`color\s+#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})\s+(.+)$/.test(
-				line.trim()
-			)
-		) {
-			// Extrai a cor e o texto da linha usando expressão regular
-			const [_, color, text] = line
-				.trim()
-				.match(/^`color\s+#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})\s+(.+)$/)
-			html += `<div class="hex-color-block" style="background: #${color};"><span>${text}</span></div>`
-		}
 		// Se a linha contém uma tag <div>, não adiciona <p> em volta
 		else if (line.includes('<div>') || line.includes('</div>')) {
 			html += line // Apenas adiciona a linha como está

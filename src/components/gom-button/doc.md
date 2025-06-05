@@ -7,8 +7,8 @@ Texto que será exibido dentro do botão.
 ## color
 
 <div>
-`color #e0ff8b default
-`color #ffa58b alert
+<gom-color color="#e0ff8b" text='default'></gom-color>
+<gom-color color="#ffa58b" text='alert'></gom-color>
 </div>
 
 ## variant

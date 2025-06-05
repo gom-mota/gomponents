@@ -36,7 +36,7 @@ const Sidebar = () => {
                 <li>Componentes</li>
 
                 <ul>
-                    ${Object.keys(components)
+                    ${Object.keys(components.expose)
 						.map(
 							(name) => /*html*/ `
                                 <li id="nav-${name}" onclick="navigateToRoute('/component/${name}')">

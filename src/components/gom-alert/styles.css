@@ -1,22 +1,36 @@
+:host {
+	width: 100%;
+}
 .alert {
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
+	padding: 12px 18px;
+	border-radius: 0 5px 5px 0;
+	font-size: 15px;
+	font-family: Arial, sans-serif;
+	border-left: 2px solid;
+	width: auto;
+	line-height: 20px;
 }
 
-.alert.info {
-    background-color: #d9edf7;
-    color: #31708f;
+.alert[type='info'] {
+	border-color: #88d7ff;
+	background-color: #0b222e;
+	color: #88d7ff;
 }
 
-.alert.warning {
-    background-color: #fcf8e3;
-    color: #8a6d3b;
+.alert[type='success'] {
+	border-color: #88ff90;
+	background-color: #102c0f;
+	color: #88ff90;
 }
 
-.alert.error {
-    background-color: #f2dede;
-    color: #a94442;
+.alert[type='warning'] {
+	border-color: #ffd388;
+	background-color: #2a200f;
+	color: #ffd388;
+}
+
+.alert[type='error'] {
+	border-color: #ff8888;
+	background-color: #2a0d0f;
+	color: #ff8888;
 }

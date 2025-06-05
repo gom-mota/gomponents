@@ -1,5 +1,7 @@
 import Sidebar from './common/Sidebar/index.js'
 import { ROUTES } from './utils.js'
+import components from './components/index.js'
+import { loadComponents, observeComponents } from '../index.js'
 
 const handleGithubPages404File = () => {
 	const search = window.location.search
@@ -23,6 +25,8 @@ const renderPageContent = async (name, params) => {
 
 	content.innerHTML = await render()
 	await after_render()
+
+	loadComponents(components.internal)
 
 	document.title = `${title} | gomlib`
 	document
@@ -80,6 +84,7 @@ const handleRenderCommon = () => {
 }
 
 const init = () => {
+	observeComponents(components.internal)
 	handleGithubPages404File()
 	handleRouteChange()
 	window.addEventListener('popstate', handleRouteChange)

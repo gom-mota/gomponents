@@ -78,7 +78,7 @@ class GomButton extends HTMLElement {
 	// Método que inicializa o template do componente
 	render() {
 		// Template do componente
-		return `
+		return /*html*/ `
             <style>
                 @import url('/src/components/gom-button/styles.css');
             </style>
