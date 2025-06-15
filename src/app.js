@@ -34,7 +34,7 @@ const renderPageContent = async (name, params) => {
 		.setAttribute('content', description)
 }
 
-window.handleMatchRoute = (pathname) =>
+export const handleMatchRoute = (pathname) =>
 	Object.keys(ROUTES).find((route) => {
 		const pattern = `^${route.replace(/:\w+/g, '([^/]+)')}$`
 		const regex = new RegExp(pattern)
@@ -92,5 +92,3 @@ const init = () => {
 }
 
 init()
-
-//TODO: refatorar para deixar de criar funções no escopo global (window)

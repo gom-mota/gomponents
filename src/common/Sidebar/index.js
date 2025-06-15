@@ -1,5 +1,6 @@
 import { ROUTES } from '../../utils.js'
 import components from '../../components/index.js'
+import { handleMatchRoute } from '../../app.js'
 
 const Sidebar = () => {
 	const render = /*html*/ `

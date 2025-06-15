@@ -33,7 +33,6 @@ const Introduction = async () => {
 			<p>O site está hospedado sem custos no GitHub Pages. Se você deseja dar os primeiros passos para criar sua própria biblioteca ou
 			reaproveitar o código de determinada parte, acesse o
 			<a href='https://github.com/gom-mota/gomponents' target='_blank'>repositório</a>.</p>
-			<gom-button label="repositório" variant="text"></gom-button>
 		</div>
 		`
 	}

@@ -10,10 +10,27 @@ class GomColor extends HTMLElement {
 	render() {
 		return /*html*/ `
             <style>
-                @import url('/src/components/gom-color/styles.css');
+               div {
+					display: flex;
+					align-items: flex-start;
+					height: 50px;
+					flex-direction: column;
+					justify-content: space-between;
+					width: 80px;
+					color: #0d1318;
+					line-height: 18px;
+					font-size: 13px;
+					padding: 0.5rem;
+					background: ${this._color};
+
+					.color-text {
+						font-size: 12px;
+						text-transform: uppercase;
+					}
+				}
             </style>
 
-            <div style="background: ${this._color};">
+            <div>
                 <span class='color-text'>${this._color}</span>
                 <span>${this._text}</span>
             </div>

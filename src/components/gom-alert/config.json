@@ -1,7 +1,7 @@
 {
 	"properties": {
 		"content": {
-			"description": "Mensagem",
+			"description": "Texto de exibição",
 			"type": "text",
 			"default": "Alert!"
 		},

@@ -1,7 +1,7 @@
 {
 	"properties": {
 		"label": {
-			"description": "Texto que fica dentro do botão.",
+			"description": "Texto que será exibido dentro do botão",
 			"type": "text",
 			"default": "Button"
 		},

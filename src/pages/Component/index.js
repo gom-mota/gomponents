@@ -1,5 +1,6 @@
 import ComponentSetting from '../../common/ComponentSetting/index.js'
 import components from '../../components/index.js'
+import { markdownToHtml } from '../../utils.js'
 
 const Component = async ({ name }) => {
 	const tag = components.expose[name]
@@ -9,28 +10,10 @@ const Component = async ({ name }) => {
 
 	const pageName = tag ? name : 'not found'
 
-	if (tag) {
-		await import(`${baseComponentPath}/index.js`)
-
+	if (tag)
 		config = await fetch(`${baseComponentPath}/config.json`).then(
 			(response) => response.json()
 		)
-	}
-
-	window.copyPreviewRenderCode = () => {
-		const previewRenderCode = document.getElementById(
-			'component-preview-render'
-		).innerHTML
-
-		navigator.clipboard
-			.writeText(previewRenderCode)
-			.then(() => {
-				alert(`Código copiado!`)
-			})
-			.catch(function (err) {
-				console.error('Erro ao copiar o texto: ', err)
-			})
-	}
 
 	const handleRenderActiveTab = (element) => {
 		const tabButtonsElement = document.querySelectorAll(
@@ -108,16 +91,9 @@ const Component = async ({ name }) => {
 
 				<div id='component-tabs-contents'>
 					<div id='live-preview-tab-content' class='live-preview-tab-content'>
-						<div class='component-preview-container'>
-							<div id='component-preview-render'>	
-								<${tag}></${tag}>
-							</div>
+					
+						<gom-preview align="center"> <${tag}></${tag}> </gom-preview>
 
-							<button id="copy-code" class="copy-button" onclick="copyPreviewRenderCode()">
-								<ion-icon name="copy-outline"></ion-icon>
-								Copiar Código
-							</button>
-						</div>				
 					</div>
 						
 					<div id='documentation-tab-content' class='documentation-tab-content'> </div>

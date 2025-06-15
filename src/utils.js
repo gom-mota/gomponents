@@ -4,50 +4,58 @@ export const ROUTES = {
 	'/component/:name': { name: 'Component', label: 'Componente' },
 }
 
-window.markdownToHtml = (markdown) => {
+export const markdownToHtml = (markdown) => {
 	const lines = markdown.split('\n')
+	const tagStack = []
 	let html = ''
-	let inRenderBlock = false
-	let renderContent = ''
 
-	lines.forEach((line) => {
-		// Se encontrar a palavra-chave "start-render", marca o início do bloco
-		if (line.includes('`start-render')) {
-			inRenderBlock = true
-			renderContent = '' // Limpa o conteúdo do bloco ao começar
+	const openTagRegex = /^<([a-zA-Z][^\s/>]*)[^>]*>$/
+	const closeTagRegex = /^<\/([a-zA-Z][^\s/>]*)>$/
+
+	const markdownHtmlTag = {
+		'# ': (line) => `<h1>${line.slice(2)}</h1>`,
+		'## ': (line) => `<h2>${line.slice(3)}</h2>`,
+		'### ': (line) => `<h3>${line.slice(4)}</h3>`,
+		'- ': (line) => `<li>${line.slice(2)}</li>`,
+	}
+
+	for (const line of lines) {
+		const openMatch = line.match(openTagRegex)
+		const closeMatch = line.match(closeTagRegex)
+
+		if (openMatch) {
+			tagStack.push(openMatch[1])
+			html += line
+			continue
 		}
-		// Se encontrar a palavra-chave "end-render", marca o fim do bloco e envolve o conteúdo com a div pai
-		else if (line.includes('`end-render') && inRenderBlock) {
-			html += `<div class="component-preview-container doc">${renderContent}</div>`
-			inRenderBlock = false
+
+		if (closeMatch) {
+			if (
+				tagStack.length &&
+				tagStack[tagStack.length - 1] === closeMatch[1]
+			) {
+				tagStack.pop()
+			}
+			html += line
+			continue
 		}
-		// Se estamos dentro de um bloco de renderização, acumula o conteúdo
-		else if (inRenderBlock) {
-			renderContent += `${line}\n` // Acumula as linhas dentro do bloco
+
+		if (tagStack.length > 0) {
+			html += line
+			continue
 		}
-		// Se a linha contém uma tag <div>, não adiciona <p> em volta
-		else if (line.includes('<div>') || line.includes('</div>')) {
-			html += line // Apenas adiciona a linha como está
-		}
-		// Outras condições de formatação
-		else if (line.startsWith('# ')) {
-			html += `<h1>${line.slice(2)}</h1>`
-		} else if (line.startsWith('## ')) {
-			html += `<h2>${line.slice(3)}</h2>`
-		} else if (line.startsWith('### ')) {
-			html += `<h3>${line.slice(4)}</h3>`
-		} else if (line.startsWith('- ')) {
-			html += `<li>${line.slice(2)}</li>`
+
+		const markdownKey = Object.keys(markdownHtmlTag).find((prefix) =>
+			line.startsWith(prefix)
+		)
+
+		if (markdownKey) {
+			html += markdownHtmlTag[markdownKey](line)
 		} else if (line.trim() === '') {
 			html += '<br>'
 		} else {
-			html += `<p>${line}</p>` // Envolvem as outras linhas com <p>
+			html += `<p>${line}</p>`
 		}
-	})
-
-	// Se o Markdown terminar com um bloco aberto, adiciona a div com o conteúdo ainda em aberto (caso necessário)
-	if (inRenderBlock) {
-		html += `<div class="component-preview-container doc">${renderContent}</div>`
 	}
 
 	return `<div class="doc-container">${html}</div>`

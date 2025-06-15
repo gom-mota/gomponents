@@ -6,11 +6,11 @@ Texto que será exibido dentro do alerta.
 
 ## type
 
-`start-render
+Tipo do alerta
 
-<gom-alert type="info" message="info"></gom-alert>
-<gom-alert type="success" message="success"></gom-alert>
-<gom-alert type="warning" message="warning"></gom-alert>
-<gom-alert type="error" message="error"></gom-alert>
-
-`end-render
+<gom-preview>
+    <gom-alert type="info" content="info"></gom-alert>
+    <gom-alert type="success" content="success"></gom-alert>
+    <gom-alert type="warning" content="warning"></gom-alert>
+    <gom-alert type="error" content="error"></gom-alert>
+</gom-preview>

@@ -9,6 +9,7 @@
 	border-left: 2px solid;
 	width: auto;
 	line-height: 20px;
+	text-align: left;
 }
 
 .alert[type='info'] {

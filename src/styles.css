@@ -353,57 +353,6 @@ h2 {
 	}
 }
 
-.component-preview-container {
-	display: flex;
-	gap: 1rem;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-	background-color: #0e1116;
-	padding: 2.5rem;
-	border: 1px solid #1e262b;
-	position: relative;
-
-	> div {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-	}
-
-	.copy-button {
-		position: absolute;
-		bottom: 5px;
-		right: 5px;
-		border: 1px solid #1e262b;
-		background: none;
-		color: white;
-		border-radius: 7px;
-		cursor: pointer;
-		padding: 0.2rem 0.6rem;
-		display: flex;
-		align-items: center;
-		gap: 0.3rem;
-
-		&:hover {
-			background: #1a222a;
-			/* color: black; */
-		}
-	}
-
-	&.doc {
-		justify-content: flex-start;
-		flex-direction: column;
-
-		> div {
-			display: flex;
-			flex-direction: row;
-			gap: 1rem;
-			width: 100%;
-		}
-	}
-}
-
 .live-preview-tab-content {
 	display: flex;
 	flex-direction: column;
@@ -477,20 +426,6 @@ h2 {
 	color: #959595;
 	font-size: 14px;
 	margin-top: -8px;
-}
-
-.hex-color-block {
-	display: flex;
-	align-items: flex-end;
-	justify-content: flex-start;
-	height: 55px;
-	width: 80px;
-	color: #0d1318;
-	font-size: 13px;
-
-	span {
-		padding: 0.5rem;
-	}
 }
 
 .doc-container {
