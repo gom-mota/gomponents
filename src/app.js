@@ -84,12 +84,17 @@ window.navigateToRoute = (pathname) => {
 	}
 }
 
+const handleSidebarRender = () => {
+	if (handleMatchRoute(window.location.pathname))
+		Sidebar(document.getElementById('sidebar'))
+}
+
 const init = () => {
 	observeComponents(components.internal)
 	handleGithubPages404File()
 	handleRouteChange()
 	window.addEventListener('popstate', handleRouteChange)
-	Sidebar(document.getElementById('sidebar'))
+	handleSidebarRender()
 }
 
 init()
