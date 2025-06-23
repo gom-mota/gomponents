@@ -38,12 +38,10 @@ const Introduction = async () => {
 	}
 
 	return {
-		title: 'Introduction',
-		description: 'Introduction page',
+		title: 'Introdução',
+		description: 'Página de Introdução',
 		render,
-		after_render: () => {
-			hljs.highlightAll()
-		},
+		after_render: () => {},
 	}
 }
 

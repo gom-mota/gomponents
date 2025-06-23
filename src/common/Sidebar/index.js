@@ -1,4 +1,4 @@
-import { ROUTES } from '../../utils.js'
+import { ROUTES } from '../../app.js'
 import components from '../../components/index.js'
 import { handleMatchRoute } from '../../app.js'
 
@@ -6,7 +6,7 @@ const Sidebar = () => {
 	const render = /*html*/ `
         <header>
             <div>
-                <h1>Gomlib</h1>
+                <h1>GOMUI</h1>
                 <span>web components lib</span>
             </div>
 

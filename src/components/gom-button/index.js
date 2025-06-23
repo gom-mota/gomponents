@@ -16,7 +16,6 @@ class GomButton extends HTMLElement {
 		this.onClick = null
 	}
 
-	// Método para atualizar o label
 	updateLabel() {
 		if (this._label) {
 			const labelElement = this.shadowRoot.querySelector('#label')
@@ -27,7 +26,6 @@ class GomButton extends HTMLElement {
 		}
 	}
 
-	// Método para atualizar o atributo disabled
 	updateDisabled() {
 		const buttonElement = this.shadowRoot.querySelector('button')
 		if (buttonElement) {
@@ -35,7 +33,6 @@ class GomButton extends HTMLElement {
 		}
 	}
 
-	// Método para atualizar o atributo variant
 	updateVariant() {
 		const buttonElement = this.shadowRoot.querySelector('#botao')
 		if (buttonElement) {
@@ -75,9 +72,7 @@ class GomButton extends HTMLElement {
 		}
 	}
 
-	// Método que inicializa o template do componente
 	render() {
-		// Template do componente
 		return /*html*/ `
             <style>
                 @import url('/src/components/gom-button/styles.css');
@@ -92,7 +87,6 @@ class GomButton extends HTMLElement {
 
 	// Método chamado sempre que um atributo observado muda
 	attributeChangedCallback(name, oldValue, newValue) {
-		// Verificar mudanças antes de atualizar
 		if (oldValue === newValue) return
 
 		switch (name) {
@@ -129,10 +123,7 @@ class GomButton extends HTMLElement {
 	}
 
 	// Método chamado quando o componente é removido do DOM
-	disconnectedCallback() {
-		// Aqui podemos limpar event listeners ou realizar outras limpezas, se necessário
-	}
+	disconnectedCallback() {}
 }
 
-// Definindo o componente personalizado
 customElements.define('gom-button', GomButton)

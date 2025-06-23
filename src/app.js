@@ -1,7 +1,12 @@
 import Sidebar from './common/Sidebar/index.js'
-import { ROUTES } from './utils.js'
 import components from './components/index.js'
 import { loadComponents, observeComponents } from '../index.js'
+
+export const ROUTES = {
+	'/': { name: 'Introduction', label: 'Introdução', nav: true },
+	'/usage': { name: 'Usage', label: 'Uso', nav: true },
+	'/component/:name': { name: 'Component', label: 'Componente' },
+}
 
 const handleGithubPages404File = () => {
 	const search = window.location.search
@@ -79,16 +84,12 @@ window.navigateToRoute = (pathname) => {
 	}
 }
 
-const handleRenderCommon = () => {
-	Sidebar(document.getElementById('sidebar'))
-}
-
 const init = () => {
 	observeComponents(components.internal)
 	handleGithubPages404File()
 	handleRouteChange()
 	window.addEventListener('popstate', handleRouteChange)
-	handleRenderCommon()
+	Sidebar(document.getElementById('sidebar'))
 }
 
 init()
