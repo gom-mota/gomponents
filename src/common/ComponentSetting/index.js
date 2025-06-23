@@ -4,14 +4,14 @@ const ComponentSetting = (props) => {
 	const inputTypes = {
 		text: (prop, key) => {
 			return /*html*/ `
-                <input type="text" placeholder="Digite aqui." value="${
-					prop.default || ''
-				}" oninput="updateComponent('${key}', this.value)">
+                <input name="${key}" type="text" placeholder="Digite aqui." value="${
+				prop.default || ''
+			}" oninput="updateComponent('${key}', this.value)">
             `
 		},
 		check: (prop, key) => {
 			return /*html*/ `
-                <input type="checkbox" id="${key}" ${
+                <input name="${key}" type="checkbox" id="${key}" ${
 				prop.default ? 'checked' : ''
 			} onchange="updateComponent('${key}', this.checked)">
             `

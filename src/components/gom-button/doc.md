@@ -6,6 +6,8 @@ Texto que será exibido dentro do botão.
 
 ## color
 
+Cor de destaque.
+
 <div>
 <gom-color color="#e0ff8b" text='default'></gom-color>
 <gom-color color="#ffa58b" text='alert'></gom-color>

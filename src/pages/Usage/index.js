@@ -1,3 +1,5 @@
+import { highlightHtmlBlockCode } from '../../utils.js'
+
 const Usage = async () => {
 	const render = () => {
 		return /*html*/ `
@@ -23,10 +25,10 @@ const Usage = async () => {
 	}
 
 	return {
-		title: 'Usage',
-		description: 'Usage page',
+		title: 'Uso',
+		description: 'Página de Uso',
 		render,
-		after_render: () => hljs.highlightAll(),
+		after_render: () => highlightHtmlBlockCode(),
 	}
 }
 

@@ -33,7 +33,6 @@ class GomAlert extends HTMLElement {
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {
-		// Verificar mudanças antes de atualizar
 		if (oldValue === newValue) return
 
 		switch (name) {

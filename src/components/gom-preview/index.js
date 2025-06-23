@@ -23,14 +23,7 @@ class GomPreview extends HTMLElement {
 			.filter(Boolean)
 			.join('\n')
 
-		navigator.clipboard
-			.writeText(htmlToCopy)
-			.then(() => {
-				alert('Código copiado!')
-			})
-			.catch((err) => {
-				console.error('Erro ao copiar:', err)
-			})
+		return navigator.clipboard.writeText(htmlToCopy)
 	}
 
 	render() {
@@ -63,7 +56,7 @@ class GomPreview extends HTMLElement {
 					}
 				}
 
-				.copy-button {
+				.copy-code {
 					position: absolute;
 					bottom: 5px;
 					right: 5px;
@@ -80,13 +73,50 @@ class GomPreview extends HTMLElement {
 					&:hover {
 						background: #1a222a;
 					}
+
+					&::after {
+						content: attr(data-tooltip);
+						position: absolute;
+						bottom: 160%;
+						left: 50%;
+						transform: translateX(-50%) scale(0.95);
+						background: #080A0D;
+						color: #fff;
+						padding: 4px 14px;
+						border-radius: 4px;
+						font-size: 12px;
+						white-space: nowrap;
+						opacity: 0;
+						pointer-events: none;
+						transition: opacity 0.3s ease, transform 0.3s ease;
+						z-index: 10;
+					}
+
+					&::before {
+						content: '';
+						position: absolute;
+						bottom: 105%;
+						left: 50%;
+						transform: translateX(-50%);
+						border: 6px solid transparent;
+						border-top-color: #080A0D;
+						opacity: 0;
+						transition: opacity 0.3s ease;
+						pointer-events: none;
+						z-index: 10;
+					}
+
+					&.show-tooltip::after,&.show-tooltip::before {
+						opacity: 1;
+						transform: translateX(-50%) scale(1);
+					}
 				}
             </style>
 
             <div>
 				<slot></slot>
 				
-				<button id="copy-code" class="copy-button">
+				<button id="copy-code" class="copy-code">
 					<ion-icon name="copy-outline"></ion-icon>
 					Copiar Código
 				</button>
@@ -103,8 +133,27 @@ class GomPreview extends HTMLElement {
 		this.shadowRoot.innerHTML = this.render()
 
 		const button = this.shadowRoot.querySelector('#copy-code')
+
 		if (button) {
-			button.addEventListener('click', () => this.copyPreviewRenderCode())
+			button.addEventListener('click', () =>
+				this.copyPreviewRenderCode()
+					.then(() => {
+						button.setAttribute('data-tooltip', 'Copiado!')
+						button.classList.add('show-tooltip')
+
+						setTimeout(() => {
+							button.classList.remove('show-tooltip')
+						}, 1700)
+					})
+					.catch(() => {
+						button.setAttribute('data-tooltip', 'Erro ao copiar!')
+						button.classList.add('show-tooltip')
+
+						setTimeout(() => {
+							button.classList.remove('show-tooltip')
+						}, 1700)
+					})
+			)
 		}
 	}
 }

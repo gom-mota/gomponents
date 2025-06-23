@@ -63,7 +63,12 @@ const Component = async ({ name }) => {
 			document.getElementById('documentation-tab-content').innerHTML =
 				await fetch(`${baseComponentPath}/doc.md`)
 					.then((response) => response.text())
-					.then((markdown) => markdownToHtml(markdown))
+					.then(
+						(markdown) =>
+							/*html*/ `<div class="doc-container">${markdownToHtml(
+								markdown
+							)}</div>`
+					)
 
 			handleComponentCallbacks()
 		}
@@ -116,7 +121,7 @@ const Component = async ({ name }) => {
 
 	return {
 		title: pageName,
-		description: `${pageName} component page`,
+		description: `Página do componente "${pageName}"`,
 		render,
 		after_render,
 	}
