@@ -19,24 +19,27 @@ const handleGithubPages404File = () => {
 	}
 }
 
-const renderPageContent = async (name, params) => {
+export const renderPageContent = async (name, params) => {
 	const content = document.getElementById('content')
 
-	const { default: Page } = await import(`./pages/${name}/index.js`)
+	try {
+		const { default: Page } = await import(`./pages/${name}/index.js`)
+		const { render, after_render, title, description } = await Page(params)
 
-	const { render, after_render, title, description } = await Page(params)
+		window.scrollTo({ top: 0, behavior: 'instant' })
 
-	window.scrollTo({ top: 0, behavior: 'instant' })
+		content.innerHTML = await render()
+		await after_render()
 
-	content.innerHTML = await render()
-	await after_render()
+		loadComponents(components.internal)
 
-	loadComponents(components.internal)
-
-	document.title = `${title} | gomlib`
-	document
-		.querySelector('meta[name="description"]')
-		.setAttribute('content', description)
+		document.title = `${title} | GOMUI`
+		document
+			.querySelector('meta[name="description"]')
+			.setAttribute('content', description)
+	} catch (error) {
+		throw error
+	}
 }
 
 export const handleMatchRoute = (pathname) =>
@@ -64,16 +67,18 @@ const getRouteParams = (pathname, route) => {
 	return params
 }
 
-const handleRouteChange = () => {
+const handleRouteChange = async () => {
 	const pathname = window.location.pathname
 	const currentRoute = handleMatchRoute(pathname)
 
-	if (currentRoute) {
-		const params = getRouteParams(pathname, currentRoute)
+	const params = getRouteParams(pathname, currentRoute)
 
-		renderPageContent(ROUTES[currentRoute].name, params)
-	} else {
-		renderPageContent('NotFound')
+	let pageName = currentRoute ? ROUTES[currentRoute].name : 'NotFound'
+
+	try {
+		await renderPageContent(pageName, params)
+	} catch ({ message }) {
+		if (message === 'NotFoundPage') await renderPageContent('NotFound')
 	}
 }
 

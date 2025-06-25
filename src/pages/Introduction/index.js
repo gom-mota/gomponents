@@ -4,7 +4,7 @@ const Introduction = async () => {
 		<div class='introduction-container'>
 			<h1>Introdução</h1>
 			
-			<p>Gomlib é uma biblioteca focada no uso de Web Components, uma tecnologia versátil no desenvolvimento web
+			<p>GOMUI é uma biblioteca focada no uso de Web Components, uma tecnologia versátil no desenvolvimento web
 			moderno. O objetivo é oferecer elementos HTML personalizados, que funcionem de forma consistente em
 			diferentes ambientes.</p>
 

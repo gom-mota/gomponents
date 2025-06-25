@@ -6,14 +6,13 @@ const Component = async ({ name }) => {
 	const tag = components.expose[name]
 	const baseComponentPath = `/src/components/${tag}`
 
-	let config
-
 	const pageName = tag ? name : 'not found'
 
-	if (tag)
-		config = await fetch(`${baseComponentPath}/config.json`).then(
-			(response) => response.json()
-		)
+	if (!tag) throw new Error('NotFoundPage')
+
+	const config = await fetch(`${baseComponentPath}/config.json`).then(
+		(response) => response.json()
+	)
 
 	const handleRenderActiveTab = (element) => {
 		const tabButtonsElement = document.querySelectorAll(

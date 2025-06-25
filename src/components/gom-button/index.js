@@ -12,8 +12,6 @@ class GomButton extends HTMLElement {
 		this._disabled = false
 		this._variant = 'primary'
 		this._color = 'default'
-
-		this.onClick = null
 	}
 
 	updateLabel() {
@@ -56,20 +54,18 @@ class GomButton extends HTMLElement {
 	}
 
 	handleOnClick(button) {
-		if (button) {
-			button.addEventListener('click', () => {
-				// Executa o callback diretamente se existir
-				if (typeof this.onClick === 'function') this.onClick()
+		button.addEventListener('click', (e) => {
+			// Executa o callback diretamente se existir
+			if (typeof this.onClick === 'function') this.onClick(e)
 
-				// Dispara um evento customizado
-				this.dispatchEvent(
-					new CustomEvent('gom-click', {
-						bubbles: true,
-						composed: true,
-					})
-				)
-			})
-		}
+			// Dispara um evento customizado
+			this.dispatchEvent(
+				new CustomEvent('gom-button-click', {
+					bubbles: true,
+					composed: true,
+				})
+			)
+		})
 	}
 
 	render() {
