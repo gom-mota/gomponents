@@ -8,7 +8,7 @@ const Usage = async () => {
 
 			<p>Para inicializar a biblioteca em seu projeto, basta fazer a importação do "loader":</p>
 
-            <pre><code class="language-html">&lt;script type="module" src="https://gomlib.gommota.com/loader.js"&gt;&lt;/script&gt;</code></pre>
+            <pre><code class="language-html">&lt;script type="module" src="https://ui.gommota.com/loader.js"&gt;&lt;/script&gt;</code></pre>
 
 			<h2>Como utilizar um componente?</h2>			
 

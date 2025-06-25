@@ -4,6 +4,7 @@ import { handleMatchRoute } from '../../app.js'
 
 const Sidebar = () => {
 	const render = /*html*/ `
+	<div class='sidebar-container'>
         <header>
             <div>
                 <h1>GOMUI</h1>
@@ -49,6 +50,7 @@ const Sidebar = () => {
                 </ul>
             </ul>
         </nav>
+	</div>
     `
 
 	const after_render = () => {
