@@ -71,12 +71,12 @@ const handleRouteChange = async () => {
 	const pathname = window.location.pathname
 	const currentRoute = handleMatchRoute(pathname)
 
-	const params = getRouteParams(pathname, currentRoute)
-
-	let pageName = currentRoute ? ROUTES[currentRoute].name : 'NotFound'
-
 	try {
-		await renderPageContent(pageName, params)
+		if (currentRoute) {
+			const params = getRouteParams(pathname, currentRoute)
+
+			await renderPageContent(ROUTES[currentRoute].name, params)
+		} else renderPageContent('NotFound')
 	} catch ({ message }) {
 		if (message === 'NotFoundPage') await renderPageContent('NotFound')
 	}
