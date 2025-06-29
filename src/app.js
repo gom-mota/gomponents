@@ -1,4 +1,4 @@
-import Sidebar from './common/Sidebar/index.js'
+import Sidebar, { handleSetActiveNavItem } from './common/Sidebar/index.js'
 import components from './components/index.js'
 import { loadComponents, observeComponents } from '../index.js'
 
@@ -22,20 +22,19 @@ const handleGithubPages404File = () => {
 export const renderPageContent = async (name, params) => {
 	const content = document.getElementById('content')
 	const sidebar = document.getElementById('sidebar')
-	sidebar.innerHTML = ''
 
 	try {
-		if (name !== 'NotFound') Sidebar(sidebar)
+		sidebar.style.display = name === 'NotFound' ? 'none' : 'flex'
 
 		const { default: Page } = await import(`./pages/${name}/index.js`)
 		const { render, after_render, title, description } = await Page(params)
 
-		window.scrollTo({ top: 0, behavior: 'instant' })
+		loadComponents(components.internal)
 
 		content.innerHTML = await render()
 		await after_render()
 
-		loadComponents(components.internal)
+		window.scrollTo({ top: 0, behavior: 'auto' })
 
 		document.title = `${title} | GOMUI`
 		document
@@ -77,6 +76,8 @@ const handleRouteChange = async () => {
 
 	try {
 		if (currentRoute) {
+			handleSetActiveNavItem()
+
 			const params = getRouteParams(pathname, currentRoute)
 
 			await renderPageContent(ROUTES[currentRoute].name, params)
@@ -96,6 +97,7 @@ window.navigateToRoute = (pathname) => {
 const init = () => {
 	observeComponents(components.internal)
 	handleGithubPages404File()
+	Sidebar(document.getElementById('sidebar'))
 	handleRouteChange()
 	window.addEventListener('popstate', handleRouteChange)
 }

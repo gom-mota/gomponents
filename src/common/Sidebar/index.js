@@ -1,6 +1,24 @@
 import { ROUTES } from '../../app.js'
 import components from '../../components/index.js'
 
+export const handleSetActiveNavItem = () => {
+	const navItems = document.querySelectorAll('#sidebar li[id^="nav-"]')
+
+	navItems.forEach((item) => item.classList.remove('active'))
+
+	const pathParts = window.location.pathname.split('/').filter(Boolean)
+
+	const lastPathPart = pathParts.length
+		? pathParts.pop()
+		: ROUTES['/'].name.toLowerCase()
+
+	const currentPathNavItemId = `nav-${lastPathPart}`
+
+	const navItemElement = document.getElementById(currentPathNavItemId)
+
+	if (navItemElement) navItemElement.classList.add('active')
+}
+
 const Sidebar = () => {
 	const render = /*html*/ `
 	<div class='sidebar-container'>
@@ -53,29 +71,7 @@ const Sidebar = () => {
     `
 
 	const after_render = () => {
-		const navItems = document.querySelectorAll('#sidebar li[id^="nav-"]')
-		const pathname = window.location.pathname
-
-		navItems.forEach((item) => item.classList.remove('active'))
-
-		const pathParts = pathname.split('/').filter(Boolean)
-
-		const lastPathPart = pathParts.length
-			? pathParts.pop()
-			: ROUTES['/'].name.toLowerCase()
-
-		const currentPathNavItemId = `nav-${lastPathPart}`
-
-		const navItemElement = document.getElementById(currentPathNavItemId)
-
-		if (navItemElement) navItemElement.classList.add('active')
-
-		navItems.forEach((item) => {
-			item.addEventListener('click', () => {
-				navItems.forEach((i) => i.classList.remove('active'))
-				item.classList.add('active')
-			})
-		})
+		handleSetActiveNavItem()
 	}
 
 	return { render, after_render }
