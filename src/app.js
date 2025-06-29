@@ -20,6 +20,7 @@ const handleGithubPages404File = () => {
 }
 
 export const renderPageContent = async (name, params) => {
+	const container = document.getElementById('container')
 	const content = document.getElementById('content')
 	const sidebar = document.getElementById('sidebar')
 
@@ -34,7 +35,7 @@ export const renderPageContent = async (name, params) => {
 		content.innerHTML = await render()
 		await after_render()
 
-		window.scrollTo({ top: 0, behavior: 'auto' })
+		if (container) container.scrollTop = 0
 
 		document.title = `${title} | GOMUI`
 		document
