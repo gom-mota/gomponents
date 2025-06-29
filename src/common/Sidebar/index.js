@@ -1,6 +1,5 @@
 import { ROUTES } from '../../app.js'
 import components from '../../components/index.js'
-import { handleMatchRoute } from '../../app.js'
 
 const Sidebar = () => {
 	const render = /*html*/ `
@@ -54,7 +53,22 @@ const Sidebar = () => {
     `
 
 	const after_render = () => {
-		const navItems = document.querySelectorAll('#sidebar li')
+		const navItems = document.querySelectorAll('#sidebar li[id^="nav-"]')
+		const pathname = window.location.pathname
+
+		navItems.forEach((item) => item.classList.remove('active'))
+
+		const pathParts = pathname.split('/').filter(Boolean)
+
+		const lastPathPart = pathParts.length
+			? pathParts.pop()
+			: ROUTES['/'].name.toLowerCase()
+
+		const currentPathNavItemId = `nav-${lastPathPart}`
+
+		const navItemElement = document.getElementById(currentPathNavItemId)
+
+		if (navItemElement) navItemElement.classList.add('active')
 
 		navItems.forEach((item) => {
 			item.addEventListener('click', () => {
@@ -62,25 +76,6 @@ const Sidebar = () => {
 				item.classList.add('active')
 			})
 		})
-
-		window.onload = () => {
-			const hasMatchRoute = handleMatchRoute(window.location.pathname)
-
-			const lastPathnamePart = window.location.pathname.split('/').pop()
-
-			if (hasMatchRoute) {
-				if (lastPathnamePart) {
-					const navItemElement = Array.from(navItems).find(
-						(item) => item.id === `nav-${lastPathnamePart}`
-					)
-
-					if (navItemElement) navItemElement.classList.add('active')
-				} else
-					document
-						.getElementById(`nav-${ROUTES['/'].name.toLowerCase()}`)
-						.classList.add('active')
-			}
-		}
 	}
 
 	return { render, after_render }

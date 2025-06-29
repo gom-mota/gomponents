@@ -21,8 +21,12 @@ const handleGithubPages404File = () => {
 
 export const renderPageContent = async (name, params) => {
 	const content = document.getElementById('content')
+	const sidebar = document.getElementById('sidebar')
+	sidebar.innerHTML = ''
 
 	try {
+		if (name !== 'NotFound') Sidebar(sidebar)
+
 		const { default: Page } = await import(`./pages/${name}/index.js`)
 		const { render, after_render, title, description } = await Page(params)
 
@@ -89,17 +93,11 @@ window.navigateToRoute = (pathname) => {
 	}
 }
 
-const handleSidebarRender = () => {
-	if (handleMatchRoute(window.location.pathname))
-		Sidebar(document.getElementById('sidebar'))
-}
-
 const init = () => {
 	observeComponents(components.internal)
 	handleGithubPages404File()
 	handleRouteChange()
 	window.addEventListener('popstate', handleRouteChange)
-	handleSidebarRender()
 }
 
 init()
