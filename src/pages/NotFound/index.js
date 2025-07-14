@@ -26,7 +26,7 @@ const NotFound = async () => {
 	}
 
 	return {
-		title: 'Não encontrado',
+		title: 'Não Encontrado',
 		description: 'Página não encontrada',
 		render,
 		after_render: () => {

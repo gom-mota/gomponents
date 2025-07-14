@@ -56,7 +56,7 @@ const Sidebar = () => {
                     </div>
                 </div>
 
-                <a href="https://github.com/gom-mota/gomponents" target="_blank">
+                <a href="https://github.com/gom-mota/gomui" target="_blank">
                     <ion-icon name="logo-github"></ion-icon>
                 </a>
             </header>
@@ -110,7 +110,7 @@ const Sidebar = () => {
                 </div>
 
                 <div class='buttons-container'>
-                    <a href="https://github.com/gom-mota/gomponents" target="_blank">
+                    <a href="https://github.com/gom-mota/gomui" target="_blank">
                         <ion-icon name="logo-github"></ion-icon>
                     </a>
 
