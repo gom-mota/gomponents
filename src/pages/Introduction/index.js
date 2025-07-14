@@ -4,13 +4,13 @@ const Introduction = async () => {
 		<div class='introduction-container'>
 			<h1>Introdução</h1>
 			
-			<p>GOMUI é uma biblioteca focada no uso de Web Components, uma tecnologia versátil no desenvolvimento web
+			<p>GOMUI é uma biblioteca de Web Components, uma tecnologia versátil no desenvolvimento web
 			moderno. O objetivo é oferecer elementos HTML personalizados, que funcionem de forma consistente em
 			diferentes ambientes.</p>
 
 			<h2>Como surgiu o projeto?</h2>
 
-			<p>O projeto nasceu durante minha jornada de aprendizado sobre Web Components. Resolvi compartilhar os
+			<p>O projeto surgiu durante minha jornada de aprendizado sobre Web Components. Resolvi compartilhar os
 			resultados online para que, ao explorar o site/código, outras pessoas possam compreender de forma simples e
 			prática como essa tecnologia funciona.</p>
 

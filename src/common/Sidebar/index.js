@@ -20,6 +20,22 @@ export const handleSetActiveNavItem = () => {
 }
 
 const Sidebar = () => {
+	const handleToggleSidebar = () => {
+		const sidebar = document.getElementById('sidebar')
+		const sidebarOverlay = document.getElementById('sidebar-overlay')
+		const toggleSidebarButton = document.getElementById('toggle-sidebar')
+
+		if (toggleSidebarButton) {
+			toggleSidebarButton.addEventListener('click', () => {
+				sidebar.classList.add('mobile')
+			})
+
+			sidebarOverlay.addEventListener('click', () => {
+				sidebar.classList.remove('mobile')
+			})
+		}
+	}
+
 	window.handleClickNavItem = (route) => {
 		const sidebar = document.getElementById('sidebar')
 		navigateToRoute(route)
@@ -32,9 +48,12 @@ const Sidebar = () => {
     <div>
         <div class='sidebar-container' id='sidebar-container'>
            <header>
-                <div>
-                    <h1>GOMUI</h1>
-                    <span>web components lib</span>
+                <div class='logo-container'>
+                    <img src='/src/images/gomui-logo.png' width='32px'/>
+                    <div>
+                        <h1>GOMUI</h1>
+                        <span>web components</span>
+                    </div>
                 </div>
 
                 <a href="https://github.com/gom-mota/gomponents" target="_blank">
@@ -82,9 +101,12 @@ const Sidebar = () => {
 
         <div class='header-top'>
             <div class='content'>
-                <div class='logo-container'>
-                    <h1>GOMUI</h1>
-                    <span>web components lib</span>
+               <div class='logo-container'>
+                    <img src='/src/images/gomui-logo.png' width='32px'/>
+                    <div>
+                        <h1>GOMUI</h1>
+                        <span>web components</span>
+                    </div>
                 </div>
 
                 <div class='buttons-container'>
@@ -92,7 +114,7 @@ const Sidebar = () => {
                         <ion-icon name="logo-github"></ion-icon>
                     </a>
 
-                    <button id='toggle-sidebar'> <ion-icon name="menu-outline"></ion-icon></button>
+                    <button id='toggle-sidebar'> <ion-icon name="menu"></ion-icon></button>
                 </div>
             </div>
         </div>
@@ -100,17 +122,7 @@ const Sidebar = () => {
     `
 
 	const after_render = () => {
-		const sidebar = document.getElementById('sidebar')
-		const sidebarOverlay = document.getElementById('sidebar-overlay')
-		const toggleSidebarButton = document.getElementById('toggle-sidebar')
-
-		toggleSidebarButton.addEventListener('click', () => {
-			if (sidebar) sidebar.classList.add('mobile')
-		})
-
-		sidebarOverlay.addEventListener('click', () => {
-			sidebar.classList.remove('mobile')
-		})
+		handleToggleSidebar()
 	}
 
 	return { render, after_render }

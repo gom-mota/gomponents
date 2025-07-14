@@ -27,12 +27,10 @@ export function observeComponents(componentMap) {
 		mutations.forEach((mutation) => {
 			mutation.addedNodes.forEach((node) => {
 				if (node.nodeType === Node.ELEMENT_NODE) {
-					// Verifica o próprio nó
 					const tagName = node.tagName.toLowerCase()
 					if (allComponents.has(tagName)) {
 						nodesToLoad.push(tagName)
 					}
-					// Verifica todos os descendentes do nó inserido
 					allComponents.forEach((internalTag) => {
 						if (
 							node.querySelector &&

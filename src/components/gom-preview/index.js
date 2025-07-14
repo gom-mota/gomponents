@@ -80,7 +80,7 @@ class GomPreview extends HTMLElement {
 						bottom: 160%;
 						left: 50%;
 						transform: translateX(-50%) scale(0.95);
-						background: #080A0D;
+						background: #1a222a;
 						color: #fff;
 						padding: 4px 14px;
 						border-radius: 4px;
@@ -99,7 +99,7 @@ class GomPreview extends HTMLElement {
 						left: 50%;
 						transform: translateX(-50%);
 						border: 6px solid transparent;
-						border-top-color: #080A0D;
+						border-top-color: #1a222a;
 						opacity: 0;
 						transition: opacity 0.3s ease;
 						pointer-events: none;
